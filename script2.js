@@ -209,8 +209,8 @@ let hatDuration = 0.3;
 // Hiệu ứng mũ
 const hatTl = gsap
   .timeline({
-    repeat: -1,
-    yoyo: true,
+    repeat: 0, // Giảm số lần lặp
+    yoyo: false,
   })
   .to("#hat-1", {
     morphSVG:
