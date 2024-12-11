@@ -602,6 +602,31 @@ body {
     text-align: center;
 }
 
+/* Responsive styles */
+@media (max-width: 768px) {
+    .gift {
+        width: 80px;
+        /* Giảm kích thước hộp quà */
+        height: 80px;
+    }
+
+    #greeting-text {
+        font-size: 1.5rem;
+        /* Chữ nhỏ hơn trên điện thoại */
+        bottom: 20px;
+    }
+
+    .gift-top,
+    .gift-bottom {
+        width: 80px;
+        height: 40px;
+    }
+
+    #merry {
+        transform: scale(0.8);
+        /* Thu nhỏ hiệu ứng Merry Christmas */
+    }
+}
 
 
 .santa .head .ears:before,
