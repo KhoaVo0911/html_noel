@@ -8,9 +8,9 @@ let isGiftOpened = false;
 
 function giftOpen() {
   jQuery("section.gift").on("click touchstart", function () {
-    if (isGiftOpened) return; // Nếu quà đã được mở, dừng lại
+    if (isGiftOpened) return; // Chặn nhiều lần click
+    isGiftOpened = true;
 
-    isGiftOpened = true; // Đánh dấu quà đã được mở
     jQuery(".error").hide();
     jQuery(".lbWrapper,.lbWrapper .signupWrapper").hide();
     jQuery(".gift-top").removeClass("hovered");
@@ -29,10 +29,9 @@ function giftOpen() {
 
 //Snow Fall
 
+// Sử dụng requestAnimationFrame thay vì setInterval
 function createSnow() {
   const canvas = document.getElementById("snow");
-  if (!canvas || !canvas.getContext) return; // Kiểm tra canvas tồn tại
-
   const ctx = canvas.getContext("2d");
   let windowWidth = window.innerWidth;
   let windowHeight = window.innerHeight;
@@ -41,7 +40,7 @@ function createSnow() {
   canvas.height = windowHeight;
 
   const particles = [];
-  const maxParticles = windowWidth > 768 ? 100 : 50; // Giảm số lượng hạt trên màn hình nhỏ
+  const maxParticles = 100;
 
   for (let i = 0; i < maxParticles; i++) {
     particles.push({
@@ -64,6 +63,9 @@ function createSnow() {
 
     ctx.fill();
     update();
+
+    // Gọi lại requestAnimationFrame thay vì setInterval
+    requestAnimationFrame(render);
   }
 
   function update() {
@@ -90,5 +92,5 @@ function createSnow() {
     canvas.height = windowHeight;
   });
 
-  setInterval(render, 33);
+  render(); // Bắt đầu render
 }

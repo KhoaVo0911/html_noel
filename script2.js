@@ -3,16 +3,16 @@ let hatDuration = 0.3;
 
 const hatTl = gsap
   .timeline({
-    repeat: -1,
-    yoyo: true,
+    repeat: 0, // Giảm số lần lặp
+    yoyo: false,
   })
   .to(
     "#hat-1",
     {
       morphSVG:
         "M332.84 146.29s-3.54-36.88 76.59-39.21c0 0-23.41 39.65-38.22 46.62 0 0-33.76 16.5-38.37-7.41z",
-      ease: hatEase,
-      duration: hatDuration,
+      ease: "Sine.easeInOut",
+      duration: 0.3,
     },
     0
   )
@@ -21,8 +21,8 @@ const hatTl = gsap
     {
       x: -10,
       y: -20,
-      ease: hatEase,
-      duration: hatDuration,
+      ease: "Sine.easeInOut",
+      duration: 0.3,
     },
     0
   );
