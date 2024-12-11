@@ -16,15 +16,15 @@ function giftOpen() {
     jQuery(".gift-bottom").addClass("fadeout");
     jQuery(".gift-top").addClass("fadeout");
 
-    // setTimeout(function () {
-    //   jQuery(".santa-wrapper").fadeIn(20000);
-    // }, 20000);
+    setTimeout(function () {
+      jQuery(".santa-wrapper").fadeIn(5000);
+    }, 20000);
 
-    // setTimeout(function () {
-    //   jQuery("#merry").show(20000);
-    //   jQuery("#houu").fadeIn(20000);
-    //   jQuery("#box").fadeIn(20000);
-    // }, 20000);
+    setTimeout(function () {
+      jQuery("#merry").show(1000);
+      jQuery("#houu").fadeIn(1000);
+      jQuery("#box").fadeIn(1000);
+    }, 20000);
   });
 }
 
