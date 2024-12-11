@@ -4,9 +4,13 @@ jQuery(document).ready(function () {
 
 //Gift Open
 
+let isGiftOpened = false;
+
 function giftOpen() {
-  // Xử lý cả sự kiện click và touchstart
   jQuery("section.gift").on("click touchstart", function () {
+    if (isGiftOpened) return; // Nếu quà đã được mở, dừng lại
+
+    isGiftOpened = true; // Đánh dấu quà đã được mở
     jQuery(".error").hide();
     jQuery(".lbWrapper,.lbWrapper .signupWrapper").hide();
     jQuery(".gift-top").removeClass("hovered");
@@ -16,15 +20,10 @@ function giftOpen() {
     jQuery(".gift-bottom").addClass("fadeout");
     jQuery(".gift-top").addClass("fadeout");
 
-    setTimeout(function () {
-      jQuery(".santa-wrapper").fadeIn(5000);
-    }, 500);
-
-    setTimeout(function () {
-      jQuery("#merry").show(1000);
-      jQuery("#houu").fadeIn(1000);
-      jQuery("#box").fadeIn(1000);
-    }, 1000);
+    jQuery(".santa-wrapper").fadeIn(1000);
+    jQuery("#merry").fadeIn(1000);
+    jQuery("#houu").fadeIn(1000);
+    jQuery("#box").fadeIn(1000);
   });
 }
 
@@ -32,6 +31,8 @@ function giftOpen() {
 
 function createSnow() {
   const canvas = document.getElementById("snow");
+  if (!canvas || !canvas.getContext) return; // Kiểm tra canvas tồn tại
+
   const ctx = canvas.getContext("2d");
   let windowWidth = window.innerWidth;
   let windowHeight = window.innerHeight;
@@ -40,7 +41,7 @@ function createSnow() {
   canvas.height = windowHeight;
 
   const particles = [];
-  const maxParticles = 1000;
+  const maxParticles = windowWidth > 768 ? 100 : 50; // Giảm số lượng hạt trên màn hình nhỏ
 
   for (let i = 0; i < maxParticles; i++) {
     particles.push({
@@ -82,13 +83,12 @@ function createSnow() {
     }
   }
 
-  function resizeCanvas() {
+  window.addEventListener("resize", function () {
     windowWidth = window.innerWidth;
     windowHeight = window.innerHeight;
     canvas.width = windowWidth;
     canvas.height = windowHeight;
-  }
+  });
 
-  window.addEventListener("resize", resizeCanvas);
   setInterval(render, 33);
 }
